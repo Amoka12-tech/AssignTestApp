@@ -1,4 +1,4 @@
-import { View, Text, ScrollView } from 'react-native'
+import { View, Text, ScrollView, Platform } from 'react-native'
 import React from 'react'
 import { RouteProp, useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '../navigation/paramList';
@@ -15,7 +15,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = props => {
     const { name, email } = props.route.params;
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList, 'ProfileScreen'>>();
     return (
-        <ScrollView contentContainerStyle={[styles.main_view, { justifyContent: 'flex-start', alignItems: 'flex-start', paddingTop: 20, }]} showsVerticalScrollIndicator={false}>
+        <ScrollView contentContainerStyle={[styles.main_view, { justifyContent: 'flex-start', alignItems: 'flex-start', paddingTop: Platform.OS === 'android'? 20 : 50, }]} showsVerticalScrollIndicator={false}>
             <View style={styles.top_nav}>
                 <Icon 
                     onPress={() => navigation.goBack()}
